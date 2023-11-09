@@ -15,7 +15,8 @@ import { Button } from "./ui/button";
 type Props = {};
 
 const CreateNoteDialog = (props: Props) => {
-  const [input, setInput] = useState("");
+
+    const [input, setInput] = useState('');
 
   return (
     <Dialog>
