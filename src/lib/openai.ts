@@ -24,13 +24,27 @@ export async function generateImagePrompt(name: string) {
     });
 
     const data = await response.json();
+    // console.log("data is: ", data);
     const image_description = data.choices[0].message.content;
 
     return image_description as string;
   } catch (error) {
     console.error(error);
-    throw error
+    throw error;
   }
 }
 
-export async function generateImage() {}
+export async function generateImage(image_description: string) {
+  try {
+    const response = await openai.createImage({
+      prompt: image_description,
+      n: 1,
+      size: "256x256",
+    });
+    const data = await response.json();
+    const image_url = data.data[0].image_url;
+    return image_url as string;
+  } catch (error) {
+    console.error(error);
+  }
+}
